@@ -12,7 +12,6 @@ define([
       _.extend(this.eventHub, Backbone.Events);
 
       this.players = new players_collection();
-      this.players.fetch();
 
       playersview = new playersview({
         eventHub: this.eventHub,

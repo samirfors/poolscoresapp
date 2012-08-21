@@ -4,25 +4,27 @@ function(){
     el: $('#players'),
 
     events: {
+      'click #genFixtures': 'generateFixtures',
       'click': 'addPlayer'
     },
 
     initialize: function(options) {
       _.bindAll(this);
       this.eventHub = options.eventHub;
+      this.collection.each(this.add);
+      this.collection.bind('add', this.add);
+    },
 
-      console.log(this.collection);
-      //this.eventHub.on('trigger', this.changeText, this);
+    add: function() {
+      this.$el.append('<p>'+this.collection.last().attributes['name']+'</a>');
+    },
 
-      this.render();
+    generateFixtures: function() {
+      console.log('generating fixtures');
     },
 
     addPlayer: function() {
       this.$el.append('<p>player again</p>');
-    },
-
-    render: function(){
-      this.$el.append('<p>player</p>');
     }
   });
   return playerview;
