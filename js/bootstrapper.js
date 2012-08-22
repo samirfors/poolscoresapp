@@ -22,7 +22,8 @@ define([
 
       fixturesview = new fixturesview({
         eventHub  : this.eventHub,
-        collection: this.players
+        collection: this.fixtures,
+        players   : this.players
       });
     }
 

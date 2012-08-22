@@ -1,5 +1,7 @@
-define([], 
-function(){
+define([
+  'models/fixture_model'
+], 
+function(fixture_model){
   var fixturesview = Backbone.View.extend({
     el: $('#fixtures'),
 
@@ -10,6 +12,9 @@ function(){
     initialize: function(options) {
       _.bindAll(this);
       this.eventHub = options.eventHub;
+      this.players = options.players;
+
+      this.eventHub.on('scheduleDone', this.showFixtures, this);
 
       this.render();
     },
@@ -18,50 +23,27 @@ function(){
       this.$el.append('<p>fixturesview</p>');
     },
 
-    getPlayerName: function(x) {
-      //console.log(x);
-      //if (x < 10) return ' '+x; else return x;
-      return this.collection.at(x).attributes['name'];
+    showFixtures: function() {
+      var self = this;
+      _.each(this.collection.models, function(fixture) {
+        self.$el.append(fixture.attributes.home + ' - ' + fixture.attributes.away + '<br>');
+      })
     },
 
     generateFixtures: function(e) {
       e.preventDefault();
-      
-      var n = this.collection.length;
-      // var nr = n - 1;
-      // var htmlpair = '';
+      this.generateMatchSchedule(this.players.pop());
+    },
 
-      for(var i=0;i<n;i++) {
-        for(var j=0;j<n/2;j++) {
-          if(j===i) {}
-          else if(j===0) {
-            console.log(this.getPlayerName(j) + ' - ' + this.getPlayerName(i));
-            var fixture = this.getPlayerName(j) + ' - ' + this.getPlayerName(i) + '<br>';
-            this.$el.append(fixture);
-          } else {
-            console.log(this.getPlayerName(j) + ' - ' + this.getPlayerName(i));
-            var fixture = this.getPlayerName(j) + ' - ' + this.getPlayerName(i) + '<br>';
-            this.$el.append(fixture);
-          }
-        }
+    generateMatchSchedule: function(current_player) {
+      for(var i=0;i<this.players.length;i++) {
+        this.collection.push(new fixture_model({home:current_player.get('name'), away: this.players.at(i).get('name')}));
       }
-
-      // for (var r=1; r<n; r++) {
-      //   for (i=1; i <= n/2; i++) {
-      //     if (i==1) {
-      //       htmlpair += ' ' + this.format ( 1 )
-      //                + ' - ' + this.format ( (n-1+r-1) % (n-1) + 2 )
-      //                + ' <br>'
-      //       } else {
-      //         htmlpair += ' ' + this.format ( (r+i-2)   % (n-1) + 2 )
-      //                  + ' - ' + this.format ( (n-1+r-i) % (n-1) + 2 )
-      //                  + ' <br>'
-      //       } 
-      //   }
-      // }
-      // this.$el.append(htmlpair);
-
-      this.eventHub.trigger('generateFixtures');
+      if(this.players.length !== 0) {
+        this.generateMatchSchedule(this.players.pop());
+      } else {
+        this.eventHub.trigger('scheduleDone')
+      }
     }
   });
   return fixturesview;
