@@ -1,10 +1,10 @@
 define([
-  'models/players_model'
+  'models/player_model'
 ], 
-function(players_model) {
+function(player_model) {
 
   var Players = Backbone.Collection.extend({
-    model: players_model,
+    model: player_model,
 
     initialize: function() {
       this.getPlayers();
@@ -14,7 +14,7 @@ function(players_model) {
       var self = this;
       $.getJSON('json/players.json', function(data) {
         _.each(data.players, function(player) {
-          self.push(new players_model({id:player.id, name:player.name}));
+          self.push(new player_model({id:player.id, name:player.name}));
         });
       });
     }

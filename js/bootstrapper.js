@@ -1,8 +1,9 @@
 define([
   'views/playersview',
   'views/fixturesview',
-  'collections/players_collection'
-], function(playersview, fixturesview, players_collection){
+  'collections/players_collection',
+  'collections/fixtures_collection'
+], function(playersview, fixturesview, players_collection, fixtures_collection){
 
   var Bootstrapper = Backbone.View.extend({
     
@@ -12,14 +13,16 @@ define([
       _.extend(this.eventHub, Backbone.Events);
 
       this.players = new players_collection();
+      this.fixtures = new fixtures_collection();
 
       playersview = new playersview({
-        eventHub: this.eventHub,
+        eventHub  : this.eventHub,
         collection: this.players
       });
 
       fixturesview = new fixturesview({
-        eventHub: this.eventHub
+        eventHub  : this.eventHub,
+        collection: this.players
       });
     }
 

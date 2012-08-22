@@ -1,0 +1,11 @@
+define([
+  'models/fixture_model'
+], 
+function(fixture_model) {
+
+  var Fixtures = Backbone.Collection.extend({
+    model: fixture_model
+  });
+
+  return Fixtures;
+});

@@ -1,11 +1,10 @@
 define([], 
 function(){
   var playerview = Backbone.View.extend({
-    el: $('#players'),
+    el: $('#players-list'),
 
     events: {
-      'click #genFixtures': 'generateFixtures',
-      'click': 'addPlayer'
+      'click'             : 'addPlayer'
     },
 
     initialize: function(options) {
@@ -16,7 +15,7 @@ function(){
     },
 
     add: function() {
-      this.$el.append('<p>'+this.collection.last().attributes['name']+'</a>');
+      this.$el.append('<li>'+this.collection.last().attributes['name']+'</li>');
     },
 
     generateFixtures: function() {

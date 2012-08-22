@@ -7,8 +7,6 @@
                         { "id"    : 4,
                           "name"  : "Calle Berndtsson"},
                         { "id"    : 5,
-                          "name"  : "Adam Gardefjord"},
-                        { "id"    : 6,
-                          "name"  : "Dennis Vizins"}
+                          "name"  : "Adam Gardefjord"}
                       ]
 }
