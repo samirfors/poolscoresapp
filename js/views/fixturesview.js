@@ -1,7 +1,8 @@
 define([
-  'models/fixture_model'
-], 
-function(fixture_model){
+  'models/fixture_model',
+  'models/tournament_model'
+],
+function(fixture_model, tournament_model){
   var fixturesview = Backbone.View.extend({
     el: $('#fixtures'),
 
@@ -15,39 +16,40 @@ function(fixture_model){
       _.bindAll(this);
       this.eventHub = options.eventHub;
       this.players = options.players;
+      this.tournament = options.tournament;
 
       this.eventHub.on('scheduleDone', this.showFixtures, this);
     },
 
     showFixtures: function() {
-      var self = this;
-      _.each(this.collection.models, function(fixture) {
-        $('#fixtures-list').append('<li class="fixture" fid="'+ fixture.cid +'"><span class="home">' + fixture.attributes.home + '</span> - <span class="away">' + fixture.attributes.away + '</span></li>');
-      })
+      var self = this,
+          fixtures = this.tournament.get('fixtures');
+
+      _.each(fixtures.models, function(fixture) {
+        var fixt = $('<li class="fixture"><span class="home">' + fixture.get('home').get('name') + '</span> - <span class="away">' + fixture.get('away').get('name') + '</span></li>');
+        fixt.data('fixture',fixture);
+        $('#fixtures-list').append(fixt);
+      });
     },
 
     setWinner: function(e) {
-      var fixture = this.collection.getByCid($(e.currentTarget).parent().attr('fid'));
-      fixture.set({winner: $(e.currentTarget).text()});
+      var fixture = $(e.currentTarget).parent().data('fixture');
 
-      console.log(this.collection.models);
+      if($(e.currentTarget).hasClass('home')) {
+          fixture.set({homePoints:2,homeCunts:0});
+      } else {
+          fixture.set({awayPoints:2,awayCunts:0});
+      }
+
     },
 
     generateFixtures: function(e) {
       e.preventDefault();
-      this.generateMatchSchedule(this.players.pop());
-    },
+      if (this.tournament.generateMatchSchedule()) {
+        this.eventHub.trigger('scheduleDone');
+      }
 
-    generateMatchSchedule: function(current_player) {
-      for(var i=0;i<this.players.length;i++) {
-        this.collection.push(new fixture_model({home:current_player.get('name'), away: this.players.at(i).get('name')}));
-      }
-      if(this.players.length !== 0) {
-        this.generateMatchSchedule(this.players.pop());
-      } else {
-        this.eventHub.trigger('scheduleDone')
-      }
-    }
+    },
   });
   return fixturesview;
 });

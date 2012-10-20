@@ -1,29 +1,32 @@
-define([], 
+define([],
 function(){
   var playerview = Backbone.View.extend({
     el: $('#players-list'),
 
     events: {
-      'click'             : 'addPlayer'
+      'click .player'             : 'addPlayerTournament'
     },
 
     initialize: function(options) {
       _.bindAll(this);
       this.eventHub = options.eventHub;
+      this.tournament = options.tournament;
       this.collection.each(this.add);
       this.collection.bind('add', this.add);
     },
 
     add: function() {
-      this.$el.append('<li>'+this.collection.last().attributes['name']+'</li>');
+      this.$el.append('<li class="player" id="'+this.collection.last().attributes['id']+'">'+this.collection.last().attributes['name']+'</li>');
     },
 
     generateFixtures: function() {
       console.log('generating fixtures');
     },
 
-    addPlayer: function() {
-      this.$el.append('<p>player again</p>');
+    addPlayerTournament: function(e) {
+      var player = this.collection.get(e.currentTarget.id);
+      this.tournament.addPlayer(player);
+      //var players =
     }
   });
   return playerview;
