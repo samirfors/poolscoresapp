@@ -6,7 +6,9 @@ function(fixture_model){
     el: $('#fixtures'),
 
     events: {
-      'click .generate-fixture': 'generateFixtures'
+      'click .generate-fixture' : 'generateFixtures',
+      'click .home'             : 'setWinner',
+      'click .away'             : 'setWinner'
     },
 
     initialize: function(options) {
@@ -15,19 +17,20 @@ function(fixture_model){
       this.players = options.players;
 
       this.eventHub.on('scheduleDone', this.showFixtures, this);
-
-      this.render();
-    },
-
-    render: function(){
-      this.$el.append('<p>fixturesview</p>');
     },
 
     showFixtures: function() {
       var self = this;
       _.each(this.collection.models, function(fixture) {
-        self.$el.append(fixture.attributes.home + ' - ' + fixture.attributes.away + '<br>');
+        $('#fixtures-list').append('<li class="fixture" fid="'+ fixture.cid +'"><span class="home">' + fixture.attributes.home + '</span> - <span class="away">' + fixture.attributes.away + '</span></li>');
       })
+    },
+
+    setWinner: function(e) {
+      var fixture = this.collection.getByCid($(e.currentTarget).parent().attr('fid'));
+      fixture.set({winner: $(e.currentTarget).text()});
+
+      console.log(this.collection.models);
     },
 
     generateFixtures: function(e) {

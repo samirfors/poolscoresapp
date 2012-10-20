@@ -6,8 +6,7 @@ function() {
       id          : null,
       home        : null,
       away        : null,
-      homepoints : null,
-      awaypoints : null
+      winner      : null
     }
   });
 
