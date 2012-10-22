@@ -16,7 +16,7 @@
 
   <header>
     <div class="container">
-      Serious poolscores
+      <h1>Serious poolscores</h1>
     </div>
   </header>
 
@@ -24,23 +24,33 @@
 
     <div class="row">
 
-      <div id="players" class="span5">
+      <div id="players" class="span12">
+        <h3>Players available</h3>
     	  <ul id="players-list"></ul>
-      </div>
+      </div><!-- end #players -->
 
-      <div id="standings" class="span7">
-      </div>
-
-    </div>
+    </div><!-- end .row -->
 
     <div class="row">
-      <div id="fixtures" class="span7">
-        <button class="generate-fixture">Generate some fixtures</button>
-        <ul id="fixtures-list"></ul>
-      </div>
-    </div>
 
-  </div>
+      <div id="fixtures">
+        <div class="span12">
+          <button class="generate-fixture">Generate some fixtures</button>
+        </div>
+        <div class="span6">
+          <h3>Fixtures</h3>
+          <ul id="fixtures-list"></ul>
+        </div>
+      </div><!-- end #fixtures -->
+
+
+      <div id="standings" class="span6">
+        <h3>Standings</h3>
+      </div><!-- end #standings -->
+
+    </div><!-- end .row -->
+
+  </div><!-- end main.container -->
 
   <footer>
     <div class="container">
