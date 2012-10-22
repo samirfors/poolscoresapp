@@ -1,13 +1,11 @@
 body {
   font-family: Helvetica;
   font-size: 12px;
-  line-height: 24px;
-}
+  line-height: 24px; }
+
 body {
-  background: #f1f1f1;
-}
-header,
-footer {
+  background: #f1f1f1; }
+
+header, footer {
   width: 100%;
-  background: #cccccc;
-}
+  background: #444444; }
