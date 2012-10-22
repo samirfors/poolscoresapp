@@ -1,11 +1,9 @@
 button
-  border: 1px solid
   cursor: pointer
   padding: 10px
-  +border-radius($medium-border-radius)
   +box-shadow(0 1px 0 $white inset, 1px 1px 1px #aaa)
-  @extend %orange
+  @extend %orange, %bordered-rounded
 
   &:hover
     +box-shadow(0 1px 0 #eee inset)
-    @extend %light-orange
+    @extend %light-orange, %bordered-rounded

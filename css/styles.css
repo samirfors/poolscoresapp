@@ -4,9 +4,11 @@
 /* Base colors */
 /* Main colors */
 /* Text colors */
-button { background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f88e11), color-stop(1, #f06015)); background-image: -webkit-linear-gradient(top, #f88e11, #f06015); background-image: -moz-linear-gradient(top, #f88e11, #f06015); background-image: -ms-linear-gradient(top, #f88e11, #f06015); background-image: -o-linear-gradient(top, #f88e11, #f06015); background-image: linear-gradient(top, bottom, #f88e11, #f06015); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015'); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015')"; color: #fef4e9; border-color: #da7c0c !important; }
+button, button:hover { border: 1px solid; border-radius: 5px; -o-border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 
-button:hover { background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #faa51a), color-stop(1, #f47a20)); background-image: -webkit-linear-gradient(top, #faa51a, #f47a20); background-image: -moz-linear-gradient(top, #faa51a, #f47a20); background-image: -ms-linear-gradient(top, #faa51a, #f47a20); background-image: -o-linear-gradient(top, #faa51a, #f47a20); background-image: linear-gradient(top, bottom, #faa51a, #f47a20); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20'); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20')"; }
+button { color: #fef4e9; border-color: #d07306; background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f88e11), color-stop(1, #e98107)); background-image: -webkit-linear-gradient(top, #f88e11, #e98107); background-image: -moz-linear-gradient(top, #f88e11, #e98107); background-image: -ms-linear-gradient(top, #f88e11, #e98107); background-image: -o-linear-gradient(top, #f88e11, #e98107); background-image: linear-gradient(top, bottom, #f88e11, #e98107); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#e98107'); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#e98107')"; }
+
+button:hover { color: #fef4e9; border-color: #d07306; background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f99a2a), color-stop(1, #f88e11)); background-image: -webkit-linear-gradient(top, #f99a2a, #f88e11); background-image: -moz-linear-gradient(top, #f99a2a, #f88e11); background-image: -ms-linear-gradient(top, #f99a2a, #f88e11); background-image: -o-linear-gradient(top, #f99a2a, #f88e11); background-image: linear-gradient(top, bottom, #f99a2a, #f88e11); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f99a2a', endColorstr='#f88e11'); -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#f99a2a', endColorstr='#f88e11')"; }
 
 /* Fonts */
 /* Typography */
@@ -18,7 +20,7 @@ h1 { font-size: 48px; line-height: 64px; }
 
 h3 { font-size: 24px; line-height: 32px; color: #555555; -webkit-text-shadow: 0 1px 0 white; -moz-text-shadow: 0 1px 0 white; -o-text-shadow: 0 1px 0 white; text-shadow: 0 1px 0 white; }
 
-button { border: 1px solid; cursor: pointer; padding: 10px; border-radius: 5px; -o-border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -webkit-box-shadow: 0 1px 0 white inset, 1px 1px 1px #aaaaaa; -moz-box-shadow: 0 1px 0 white inset, 1px 1px 1px #aaaaaa; -o-box-shadow: 0 1px 0 white inset, 1px 1px 1px #aaaaaa; box-shadow: 0 1px 0 white inset, 1px 1px 1px #aaaaaa; }
+button { cursor: pointer; padding: 10px; -webkit-box-shadow: 0 1px 0 white inset, 1px 1px 1px #aaaaaa; -moz-box-shadow: 0 1px 0 white inset, 1px 1px 1px #aaaaaa; -o-box-shadow: 0 1px 0 white inset, 1px 1px 1px #aaaaaa; box-shadow: 0 1px 0 white inset, 1px 1px 1px #aaaaaa; }
 button:hover { -webkit-box-shadow: 0 1px 0 #eeeeee inset; -moz-box-shadow: 0 1px 0 #eeeeee inset; -o-box-shadow: 0 1px 0 #eeeeee inset; box-shadow: 0 1px 0 #eeeeee inset; }
 
 /* Main styles */
