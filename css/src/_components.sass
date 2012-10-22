@@ -1,9 +1,16 @@
-%separator
-    border-top: 1px solid $black
+$medium-border-radius: 5px
 
 %seam
-    clear: both
-    display: block
-    height: 0px
-    border-top: 1px solid rgba($black, .12)
-    border-bottom: 1px solid rgba($white, .15)
+  clear: both
+  display: block
+  height: 0px
+  border-top: 1px solid rgba($black, .12)
+  border-bottom: 1px solid rgba($white, .15)
+
+%orange
+  +linear-gradient(#F88E11,#F06015,1,0)
+  color: #FEF4E9
+  border-color: #DA7C0C !important
+
+%light-orange
+  +linear-gradient(#faa51a,#f47a20,1,0)
