@@ -25,6 +25,7 @@ function(){
 
     addPlayerTournament: function(e) {
       var player = this.collection.get(e.currentTarget.id);
+     $(e.currentTarget).css({color:"#ff00ff"})
       this.tournament.addPlayer(player);
       //var players =
     }
