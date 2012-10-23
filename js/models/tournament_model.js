@@ -24,7 +24,7 @@ function(fixtures_collection,fixture_model) {
           if(players.length == 2)
           {
             add(players[0],players[1]);
-          } 
+          }
 
           var p1,p2,p3,p4;
           if(players.length == 3)
@@ -36,7 +36,7 @@ function(fixtures_collection,fixture_model) {
             add(p1,p2);
             add(p2,p3);
             add(p3,p1);
-          } 
+          }
 
 
           if(players.length == 4)
@@ -52,8 +52,8 @@ function(fixtures_collection,fixture_model) {
             add(p4,p1);
             add(p1,p3);
             add(p2,p4);
-   
-          } 
+
+          }
 
 
           if(players.length == 5)
@@ -76,7 +76,7 @@ function(fixtures_collection,fixture_model) {
             add(p2,p5);
           }
 
-       
+
             for(var i in baseRound)
             {
                fixtures.push(baseRound[i])
@@ -102,15 +102,22 @@ function(fixtures_collection,fixture_model) {
           }
           return fixtures;
         }
-        }
-      },
+      }
+    },
     addPlayer: function(player) {
       var players = this.get('players');
       players.push(player);
       console.log("ADD:" + player)
     },
 
-    removePlayer: function() {
+    removePlayer: function(player) {
+      var players = this.get('players');
+
+      for(var p in players) {
+        if (player.id === players[p].id) {
+          players.splice(p, 1);
+        }
+      }
     },
 
     generateMatchSchedule: function() {
@@ -122,11 +129,11 @@ function(fixtures_collection,fixture_model) {
       else if(players.length == 3) rounds = 3;
       else rounds = 2;
 
-     // this.set("fixtures", this.scheduleProcessor.process(this.get('players'),rounds));
+      // this.set("fixtures", this.scheduleProcessor.process(this.get('players'),rounds));
 
-     this.set("fixtures", this.templateProcessor.process(players,rounds));
+      this.set("fixtures", this.templateProcessor.process(players,rounds));
       // return false if it failed
-     
+
       return true;
 
     }

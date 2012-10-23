@@ -15,8 +15,6 @@ define([
       _.extend(this.eventHub, Backbone.Events);
 
       this.players = new players_collection();
-
-    
       this.tournament = new tournament_model();
 
      // this.players.getAllPlayers();

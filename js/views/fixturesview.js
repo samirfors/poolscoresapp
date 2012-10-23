@@ -10,7 +10,7 @@ function(){
       'click .generate-fixture' : 'generateFixtures',
       'click .home'             : 'setWinner',
       'click .away'             : 'setWinner',
-      'click .send-results'    : 'save'
+      'click .send-results'     : 'save'
 
     },
 
@@ -56,13 +56,13 @@ function(){
         this.eventHub.trigger('scheduleDone');
       }
     },
+
     save:function(e){
       console.log("SAVE!!!")
-      this.tournament.save(null,{success:function(){
-
+      this.tournament.save(null,{
+        success:function(){
           alert("Saved to Parse!")
-      }
-
+        }
       });
     }
 

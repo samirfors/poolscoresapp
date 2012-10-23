@@ -17,11 +17,10 @@ function(){
     },
 
     add: function() {
-
       var self = this;
       self.$el.html("");
       this.collection.each(function(object) {
-           self.$el.append('<li class="player available" id="'+object.id+'">'+object.attributes['name']+'</li>');
+        self.$el.append('<li class="player available" id="'+object.id+'">'+object.attributes['name']+'</li>');
     });
     },
 
@@ -33,7 +32,6 @@ function(){
       var player = this.collection.get(e.currentTarget.id);
       $(e.currentTarget).addClass('selected').removeClass('available');
       this.tournament.addPlayer(player);
-      console.log("ADD")
     },
 
     removePlayerTournament: function(e) {
