@@ -28,3 +28,15 @@ header
 footer
   +linear-gradient($hf-bg, $hf-gradient, 1, 1)
   border-top: 1px solid $border-color
+
+.player
+  @extend %selectable
+
+  &.selected
+    background: $mild-green
+
+.fixture
+  @extend %selectable
+
+  .winner
+    background: $mild-green
