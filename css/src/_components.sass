@@ -1,5 +1,7 @@
-$medium-border-radius: 5px
+/* Variables */
+$border-radius-medium: 5px
 
+/* Components */
 %seam
   clear: both
   display: block
@@ -7,9 +9,12 @@ $medium-border-radius: 5px
   border-top: 1px solid rgba($black, .12)
   border-bottom: 1px solid rgba($white, .15)
 
-%bordered-rounded
+%bordered
   border: 1px solid
-  +border-radius($medium-border-radius)
+
+%bordered-rounded
+  @extend %bordered
+  +border-radius($border-radius-medium)
 
 %orange
   color: $soft-white

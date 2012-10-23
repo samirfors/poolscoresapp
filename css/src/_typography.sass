@@ -3,21 +3,38 @@
 @import url(http://fonts.googleapis.com/css?family=Delius+Unicase)
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700)
 
+/* Variables */
+$font-size: 12px
+$line-height: $font-size * 2
+
+$font-size-h1: $font-size * 4
+$line-height-h1: $font-size * 5
+
+$font-size-h2: $font-size * 3
+$line-height-h2: $font-size * 4
+
+$font-size-h3: $font-size * 2
+$line-height-h3: $font-size * 3
+
 /* Typography */
 body
   font-family: 'Droid Sans', Helvetica, sans-serif
-  font-size: 12px
-  line-height: 24px
+  font-size: $font-size
+  line-height: $line-height
 
 h1, h2, h3, h4, h5
   font-family: 'Coming Soon', cursive
 
 h1
-  font-size: 48px
-  line-height: 64px
+  font-size: $font-size-h1
+  line-height: $line-height-h1
+
+h2
+  font-size: $font-size-h2
+  line-height: $line-height-h2
 
 h3
-  font-size: 24px
-  line-height: 32px
+  font-size: $font-size-h3
+  line-height: $line-height-h3
   color: $h3
   +text-shadow(0 1px 0 $white)
