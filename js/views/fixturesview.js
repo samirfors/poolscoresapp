@@ -25,11 +25,13 @@ function(fixture_model, tournament_model){
       var self = this,
           fixtures = this.tournament.get('fixtures');
 
-      _.each(fixtures.models, function(fixture) {
+      for(var i in fixtures)
+       { //alert(fixture.get('home'))
+        fixture = fixtures[i];
         var fixt = $('<li class="fixture"><span class="home">' + fixture.get('home').get('name') + '</span> - <span class="away">' + fixture.get('away').get('name') + '</span></li>');
         fixt.data('fixture',fixture);
         $('#fixtures-list').append(fixt);
-      });
+      }
     },
 
     setWinner: function(e) {
@@ -48,6 +50,8 @@ function(fixture_model, tournament_model){
       if (this.tournament.generateMatchSchedule()) {
         this.eventHub.trigger('scheduleDone');
       }
+
+
 
     },
   });

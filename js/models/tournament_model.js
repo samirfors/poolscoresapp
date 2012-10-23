@@ -4,11 +4,12 @@ define([
 ],
 function(fixtures_collection,fixture_model) {
 
-  var Tournament = Backbone.Model.extend({
+  var Tournament = Parse.Object.extend({
+    className:"Tournament",
     defaults: {
       id: null,
       date: null,
-      fixtures: new fixtures_collection(),
+      fixtures: [],
       players: []
     },
 
@@ -19,8 +20,7 @@ function(fixtures_collection,fixture_model) {
       this.templateProcessor = {
         process:function(players,rounds){
           var baseRound = [];
-          var fixtures = new fixtures_collection();
-         
+          var fixtures = [];
           if(players.length == 2)
           {
             add(players[0],players[1]);
@@ -95,100 +95,15 @@ function(fixtures_collection,fixture_model) {
             }
 
           function add(a,b){
-            baseRound.push(new fixture_model({home:a,away:b}))
+            var f = new fixture_model();
+            f.set("home",a);
+            f.set("away",b);
+            baseRound.push(f)
           }
-
           return fixtures;
-
+        }
         }
       },
-      this.scheduleProcessor = {
-        process:function(players,rounds){
-            console.log("process")
-            var prio = {};
-            var fixtures = new fixtures_collection();
-
-            for (var i in players)
-            {
-              players[i].prio = 0;
-            }
-            // Create first round that then gets rotated for the remaining rounds
-            var baseRound = [];
-
-            var gamesPerRound = (players.length-1) * ((players.length) / 2)
-            //alert(gamesPerRound);
-          
-            for(var i = 0; i < gamesPerRound; i++)
-            {
-              var p1 = players[0];
-              var p2;
-              // FIND A PLAYER p1 hasn't played
-              for(var j=1; j<players.length; j++)
-              {
-                  var otherPlayer = players[j]
-                  var hasPlayed = false;
-                  for(var f in baseRound)
-                  {
-
-                    if(baseRound[f].get("home") == p1 && baseRound[f].get("away") == otherPlayer) hasPlayed = true;
-                    if(baseRound[f].get("away") == p1 && baseRound[f].get("home")  == otherPlayer) hasPlayed = true;
-                  }
-
-                  if(hasPlayed == false)
-                  {
-                    if(!p2)
-                    p2 = otherPlayer;
-                    else if(otherPlayer.prio > p2.prio) p2 = otherPlayer
-                  }
-              }
-
-              var newFixture = new fixture_model({home:p1,away:p2})
-              baseRound.push(newFixture);
-             
-              p1.prio-=1;
-              p2.prio-=1;
-              players.sort(sortOnPrio)
-            }
-
-            // Reverse baserRund to make sure player[0] plays last game and add it to the fixtures
-
-
-            baseRound = baseRound.reverse();
-            // Make sure p1 plays home in last game
-            if(rounds%2 == 0)
-            {
-              baseRound[0].rotate();
-            }
-
-           for(var i in baseRound)
-            {
-               fixtures.push(baseRound[i])
-            }
-
-            // REPEAT FOR REMAINING ROUNDS
-            for(var i = 1; i < rounds; i++)
-            {
-              for(var fixt in baseRound)
-              {
-                var newFixt = baseRound[fixt].clone()
-                if(i%2 != 0) newFixt.rotate();
-                fixtures.push(newFixt)
-              }
-            }
-
-          function sortOnPrio(a, b){
-            if(a.prio > b.prio) return -1;
-
-            return 1;
-          }
-          return fixtures;
-
-        }
-      }
-    },
-
-
-
     addPlayer: function(player) {
       var players = this.get('players');
       players.push(player);
@@ -200,7 +115,7 @@ function(fixtures_collection,fixture_model) {
     generateMatchSchedule: function() {
       var rounds = 2;
       var players = this.get('players');
-      
+      console.log(players)
       if(players.length < 2) return false;
       else if(players.length == 2) rounds = 6;
       else if(players.length == 3) rounds = 3;
@@ -208,14 +123,17 @@ function(fixtures_collection,fixture_model) {
 
      // this.set("fixtures", this.scheduleProcessor.process(this.get('players'),rounds));
 
-     this.set("fixtures", this.templateProcessor.process(this.get('players'),rounds));
+     this.set("fixtures", this.templateProcessor.process(players,rounds));
       // return false if it failed
+     this.save()
       return true;
 
     },
 
-    saveTournament:function(){
+    saveParse:function(){
       //Using parse 
+      var fixtures = this.get("fixtures");
+      
 
 
     }

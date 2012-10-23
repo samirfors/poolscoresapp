@@ -2,8 +2,10 @@ define([
   'views/playersview',
   'views/fixturesview',
   'collections/players_collection',
-  'models/tournament_model'
-], function(playersview, fixturesview, players_collection, tournament_model){
+  'models/tournament_model',
+  'models/player_model',
+
+], function(playersview, fixturesview, players_collection, tournament_model,player_model){
 
   var Bootstrapper = Backbone.View.extend({
 
@@ -13,9 +15,11 @@ define([
       _.extend(this.eventHub, Backbone.Events);
 
       this.players = new players_collection();
+
+    
       this.tournament = new tournament_model();
 
-      this.players.getAllPlayers();
+     // this.players.getAllPlayers();
 
       playersview = new playersview({
         eventHub  : this.eventHub,

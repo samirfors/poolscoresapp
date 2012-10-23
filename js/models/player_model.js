@@ -1,10 +1,12 @@
 define([], 
 function() {
 
-  var Player = Backbone.Model.extend({
+  var Player = Parse.Object.extend({
+  	className: "Player",
     defaults: {
       id: null,
-      name: null
+      name: null,
+      cid:null
     }
   });
 
