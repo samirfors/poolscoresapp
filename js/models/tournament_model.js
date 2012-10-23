@@ -125,16 +125,8 @@ function(fixtures_collection,fixture_model) {
 
      this.set("fixtures", this.templateProcessor.process(players,rounds));
       // return false if it failed
-     this.save()
+     
       return true;
-
-    },
-
-    saveParse:function(){
-      //Using parse 
-      var fixtures = this.get("fixtures");
-      
-
 
     }
 

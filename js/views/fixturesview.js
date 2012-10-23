@@ -8,6 +8,7 @@ function(fixture_model, tournament_model){
 
     events: {
       'click .generate-fixture' : 'generateFixtures',
+      'click .save-tournament' : 'save',
       'click .home'             : 'setWinner',
       'click .away'             : 'setWinner'
     },
@@ -17,7 +18,7 @@ function(fixture_model, tournament_model){
       this.eventHub = options.eventHub;
       this.players = options.players;
       this.tournament = options.tournament;
-
+       $(".save-tournament").hide();
       this.eventHub.on('scheduleDone', this.showFixtures, this);
     },
 
@@ -49,11 +50,19 @@ function(fixture_model, tournament_model){
       e.preventDefault();
       if (this.tournament.generateMatchSchedule()) {
         this.eventHub.trigger('scheduleDone');
+          $(".save-tournament").show();
+      }
+    },
+
+    save:function(e){
+      this.tournament.save(null,{success:function(){
+
+          alert("Saved to Parse!")
       }
 
+      });
+    }
 
-
-    },
   });
   return fixturesview;
 });
