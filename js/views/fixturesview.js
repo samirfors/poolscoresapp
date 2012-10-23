@@ -8,6 +8,7 @@ function(){
 
     events: {
       'click .generate-fixture' : 'generateFixtures',
+      'click .save-tournament' : 'save',
       'click .home'             : 'setWinner',
       'click .away'             : 'setWinner',
       'click .send-results'    : 'save'
@@ -19,7 +20,7 @@ function(){
       this.eventHub = options.eventHub;
       this.players = options.players;
       this.tournament = options.tournament;
-
+       $(".save-tournament").hide();
       this.eventHub.on('scheduleDone', this.showFixtures, this);
     },
 
@@ -54,8 +55,10 @@ function(){
       e.preventDefault();
       if (this.tournament.generateMatchSchedule()) {
         this.eventHub.trigger('scheduleDone');
+          $(".save-tournament").show();
       }
     },
+<<<<<<< HEAD
     save:function(e){
       console.log("SAVE!!!")
       this.tournament.save(null,{success:function(){
@@ -63,6 +66,15 @@ function(){
           alert("Saved to Parse!")
       }
 
+=======
+
+    save:function(e){
+      this.tournament.save(null,{success:function(){
+
+          alert("Saved to Parse!")
+      }
+
+>>>>>>> More save and sync with parse.com!
       });
     }
 
