@@ -1,8 +1,8 @@
 define([
-  'models/fixture_model',
-  'models/tournament_model'
 ],
-function(fixture_model, tournament_model){
+function(){
+  'use strict';
+  var console = window.console;
   var fixturesview = Backbone.View.extend({
     el: $('#fixtures'),
 
@@ -22,10 +22,10 @@ function(fixture_model, tournament_model){
     },
 
     showFixtures: function() {
-      var self = this,
-          fixtures = this.tournament.get('fixtures');
+      var fixtures = this.tournament.get('fixtures');
 
       _.each(fixtures.models, function(fixture) {
+        console.log(fixture);
         var fixt = $('<li class="fixture"><span class="home">' + fixture.get('home').get('name') + '</span> - <span class="away">' + fixture.get('away').get('name') + '</span></li>');
         fixt.data('fixture',fixture);
         $('#fixtures-list').append(fixt);
@@ -34,6 +34,9 @@ function(fixture_model, tournament_model){
 
     setWinner: function(e) {
       var fixture = $(e.currentTarget).parent().data('fixture');
+
+      $(e.currentTarget).addClass('winner');
+      $(e.currentTarget).parent().append('<input type="text">');
 
       if($(e.currentTarget).hasClass('home')) {
           fixture.set({homePoints:2,homeCunts:0});
@@ -49,7 +52,7 @@ function(fixture_model, tournament_model){
         this.eventHub.trigger('scheduleDone');
       }
 
-    },
+    }
   });
   return fixturesview;
 });
