@@ -8,6 +8,9 @@
 body
   background: $page-bg
 
+ul
+  list-style-type: none
+
 a
   color: $orange
   text-decoration: none
@@ -30,10 +33,11 @@ footer
   border-top: 1px solid $border-color
 
 .player
-  @extend %selectable
+  @extend %selectable, %btn, %grey
+  margin: 5px 0
 
   &.selected
-    background: $mild-green
+    @extend %green
 
 .fixture
   @extend %selectable

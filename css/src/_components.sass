@@ -26,5 +26,20 @@ $border-radius-medium: 5px
   border-color: $dark-orange
   +linear-gradient($light-orange,$orange,1,0)
 
+%grey
+  color: #777
+  border-color: #ccc
+  +linear-gradient(#eee, #ddd, 1, 0)
+
+%green
+  border-color: $green
+  background: $mild-green
+
 %selectable
   cursor: pointer
+
+%btn
+  padding: 10px
+  text-align: center
+  +box-shadow(0 1px 0 $white inset, 1px 1px 1px #aaa)
+  @extend %bordered-rounded, %selectable
