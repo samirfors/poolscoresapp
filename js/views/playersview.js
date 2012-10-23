@@ -12,12 +12,17 @@ function(){
       _.bindAll(this);
       this.eventHub = options.eventHub;
       this.tournament = options.tournament;
-      this.collection.each(this.add);
+     // this.collection.each(this.add);
       this.collection.bind('add', this.add);
     },
 
     add: function() {
-      this.$el.append('<li class="player available" id="'+this.collection.last().attributes['id']+'">'+this.collection.last().attributes['name']+'</li>');
+
+      var self = this;
+      self.$el.html("");
+      this.collection.each(function(object) {
+           self.$el.append('<li class="player available" id="'+object.id+'">'+object.attributes['name']+'</li>');
+    });
     },
 
     generateFixtures: function() {
@@ -28,6 +33,7 @@ function(){
       var player = this.collection.get(e.currentTarget.id);
       $(e.currentTarget).addClass('selected').removeClass('available');
       this.tournament.addPlayer(player);
+      console.log("ADD")
     },
 
     removePlayerTournament: function(e) {

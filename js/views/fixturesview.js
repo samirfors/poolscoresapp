@@ -9,7 +9,9 @@ function(){
     events: {
       'click .generate-fixture' : 'generateFixtures',
       'click .home'             : 'setWinner',
-      'click .away'             : 'setWinner'
+      'click .away'             : 'setWinner',
+      'click .send-results'    : 'save'
+
     },
 
     initialize: function(options) {
@@ -23,13 +25,15 @@ function(){
 
     showFixtures: function() {
       var fixtures = this.tournament.get('fixtures');
+      for(var i in fixtures)
+       { //alert(fixture.get('home'))
+           var fixture;
 
-      _.each(fixtures.models, function(fixture) {
-        console.log(fixture);
+        fixture = fixtures[i];
         var fixt = $('<li class="fixture"><span class="home">' + fixture.get('home').get('name') + '</span> - <span class="away">' + fixture.get('away').get('name') + '</span></li>');
         fixt.data('fixture',fixture);
         $('#fixtures-list').append(fixt);
-      });
+      }
     },
 
     setWinner: function(e) {
@@ -51,8 +55,17 @@ function(){
       if (this.tournament.generateMatchSchedule()) {
         this.eventHub.trigger('scheduleDone');
       }
+    },
+    save:function(e){
+      console.log("SAVE!!!")
+      this.tournament.save(null,{success:function(){
 
+          alert("Saved to Parse!")
+      }
+
+      });
     }
+
   });
   return fixturesview;
 });

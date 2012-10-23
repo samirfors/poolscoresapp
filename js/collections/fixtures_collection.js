@@ -3,7 +3,7 @@ define([
 ], 
 function(fixture_model) {
 
-  var Fixtures = Backbone.Collection.extend({
+  var Fixtures = Parse.Collection.extend({
     model: fixture_model
   });
 

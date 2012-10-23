@@ -3,11 +3,11 @@ define([
 ],
 function(player_model) {
 
-  var Players = Backbone.Collection.extend({
+  var Players = Parse.Collection.extend({
     model: player_model,
 
     initialize: function() {
-
+      this.fetch({add:true});
     },
 
     getAllPlayers: function() {
@@ -28,8 +28,8 @@ function(player_model) {
           {
             //console.log(results[i].get("name"));
             console.log(results[i].id);
-            self.push(new player_model({id:results[i].id, name:results[i].get("name")}));
-
+            self.add(new player_model({ name:results[i].get("name")}));
+            self.last(id)
           }
 
 
