@@ -1,15 +1,16 @@
 define([
   'collections/fixtures_collection',
+  'collections/players_collection',
   'models/fixture_model'
 ],
-function(fixtures_collection,fixture_model) {
+function(fixtures_collection,players_collection,fixture_model) {
 
   var Tournament = Backbone.Model.extend({
     defaults: {
       id: null,
       date: null,
       fixtures: new fixtures_collection(),
-      players: []
+      players: new players_collection()
     },
 
 
@@ -20,31 +21,31 @@ function(fixtures_collection,fixture_model) {
         process:function(players,rounds){
           var baseRound = [];
           var fixtures = new fixtures_collection();
-         
-          if(players.length == 2)
-          {
-            add(players[0],players[1]);
-          } 
 
-          var p1,p2,p3,p4;
-          if(players.length == 3)
+          if(players.length === 2)
           {
-            p1 = players[1];
-            p2 = players[2];
-            p3 = players[0];
+            add(players.at(0),players.at(1));
+          }
+
+          var p1,p2,p3,p4,p5;
+          if(players.length === 3)
+          {
+            p1 = players.at(1);
+            p2 = players.at(2);
+            p3 = players.at(0);
 
             add(p1,p2);
             add(p2,p3);
             add(p3,p1);
-          } 
+          }
 
 
-          if(players.length == 4)
+          if(players.length === 4)
           {
-            p1 = players[3];
-            p2 = players[1];
-            p3 = players[2];
-            p4 = players[0];
+            p1 = players.at(3);
+            p2 = players.at(1);
+            p3 = players.at(2);
+            p4 = players.at(0);
 
             add(p1,p2);
             add(p3,p4);
@@ -52,17 +53,17 @@ function(fixtures_collection,fixture_model) {
             add(p4,p1);
             add(p1,p3);
             add(p2,p4);
-   
-          } 
+
+          }
 
 
-          if(players.length == 5)
+          if(players.length === 5)
           {
-            p1 = players[2];
-            p2 = players[1];
-            p3 = players[4];
-            p4 = players[3];
-            p5 = players[0];
+            p1 = players.at(2);
+            p2 = players.at(1);
+            p3 = players.at(4);
+            p4 = players.at(3);
+            p5 = players.at(0);
 
             add(p1,p2);
             add(p3,p4);
@@ -76,21 +77,23 @@ function(fixtures_collection,fixture_model) {
             add(p2,p5);
           }
 
-       
+
             for(var i in baseRound)
             {
-               fixtures.push(baseRound[i])
+               fixtures.push(baseRound[i]);
             }
 
             // REPEAT FOR REMAINING ROUNDS
-            for(var i = 1; i < rounds; i++)
+            for(i = 1; i < rounds; i++)
             {
               for(var fixt in baseRound)
               {
-                var newFixt = baseRound[fixt].clone()
-                if(i%2 != 0) newFixt.rotate();
+                var newFixt = baseRound[fixt].clone();
+                if(i%2 !== 0) {
+                  newFixt.rotate();
+                }
 
-                fixtures.push(newFixt)
+                fixtures.push(newFixt);
               }
             }
 
@@ -117,10 +120,10 @@ function(fixtures_collection,fixture_model) {
 
             var gamesPerRound = (players.length-1) * ((players.length) / 2)
             //alert(gamesPerRound);
-          
+
             for(var i = 0; i < gamesPerRound; i++)
             {
-              var p1 = players[0];
+              var p1 = players.at(0);
               var p2;
               // FIND A PLAYER p1 hasn't played
               for(var j=1; j<players.length; j++)
@@ -130,11 +133,11 @@ function(fixtures_collection,fixture_model) {
                   for(var f in baseRound)
                   {
 
-                    if(baseRound[f].get("home") == p1 && baseRound[f].get("away") == otherPlayer) hasPlayed = true;
-                    if(baseRound[f].get("away") == p1 && baseRound[f].get("home")  == otherPlayer) hasPlayed = true;
+                    if(baseRound[f].get("home") === p1 && baseRound[f].get("away") === otherPlayer) hasPlayed = true;
+                    if(baseRound[f].get("away") === p1 && baseRound[f].get("home")  === otherPlayer) hasPlayed = true;
                   }
 
-                  if(hasPlayed == false)
+                  if(hasPlayed === false)
                   {
                     if(!p2)
                     p2 = otherPlayer;
@@ -144,7 +147,7 @@ function(fixtures_collection,fixture_model) {
 
               var newFixture = new fixture_model({home:p1,away:p2})
               baseRound.push(newFixture);
-             
+
               p1.prio-=1;
               p2.prio-=1;
               players.sort(sortOnPrio)
@@ -155,7 +158,7 @@ function(fixtures_collection,fixture_model) {
 
             baseRound = baseRound.reverse();
             // Make sure p1 plays home in last game
-            if(rounds%2 == 0)
+            if(rounds%2 === 0)
             {
               baseRound[0].rotate();
             }
@@ -194,16 +197,18 @@ function(fixtures_collection,fixture_model) {
       players.push(player);
     },
 
-    removePlayer: function() {
+    removePlayer: function(player) {
+      var players = this.get('players');
+      players.remove(player.attributes.id);
     },
 
     generateMatchSchedule: function() {
       var rounds = 2;
       var players = this.get('players');
-      
+
       if(players.length < 2) return false;
-      else if(players.length == 2) rounds = 6;
-      else if(players.length == 3) rounds = 3;
+      else if(players.length === 2) rounds = 6;
+      else if(players.length === 3) rounds = 3;
       else rounds = 2;
 
      // this.set("fixtures", this.scheduleProcessor.process(this.get('players'),rounds));
@@ -215,7 +220,7 @@ function(fixtures_collection,fixture_model) {
     },
 
     saveTournament:function(){
-      //Using parse 
+      //Using parse
 
 
     }
