@@ -4,7 +4,8 @@ function(){
     el: $('#players-list'),
 
     events: {
-      'click .player'             : 'addPlayerTournament'
+      'click .available'          : 'addPlayerTournament',
+      'click .selected'           : 'removePlayerTournament'
     },
 
     initialize: function(options) {
@@ -16,7 +17,7 @@ function(){
     },
 
     add: function() {
-      this.$el.append('<li class="player" id="'+this.collection.last().attributes['id']+'">'+this.collection.last().attributes['name']+'</li>');
+      this.$el.append('<li class="player available" id="'+this.collection.last().attributes['id']+'">'+this.collection.last().attributes['name']+'</li>');
     },
 
     generateFixtures: function() {
@@ -25,9 +26,14 @@ function(){
 
     addPlayerTournament: function(e) {
       var player = this.collection.get(e.currentTarget.id);
-     $(e.currentTarget).css({color:"#ff00ff"})
+      $(e.currentTarget).addClass('selected').removeClass('available');
       this.tournament.addPlayer(player);
-      //var players =
+    },
+
+    removePlayerTournament: function(e) {
+      var player = this.collection.get(e.currentTarget.id);
+      $(e.currentTarget).removeClass('selected').addClass('available');
+      this.tournament.removePlayer(player);
     }
   });
   return playerview;
