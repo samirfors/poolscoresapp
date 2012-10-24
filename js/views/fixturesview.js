@@ -39,17 +39,36 @@ function(Backbone, _, $){
     },
 
     setWinner: function(e) {
-      var fixture = $(e.currentTarget).parent().data('fixture');
+      var fixture = $(e.currentTarget).parent().data('fixture'),
+          cuntpoints,
+          self = this;
 
+      this.removeMeta();
+      $(e.currentTarget).siblings().removeClass('winner');
       $(e.currentTarget).addClass('winner');
-      $(e.currentTarget).parent().append('<input type="text">');
+      this.addMeta($(e.currentTarget));
 
-      if($(e.currentTarget).hasClass('home')) {
-          fixture.set({homePoints:2,homeCunts:0});
-      } else {
-          fixture.set({awayPoints:2,awayCunts:0});
-      }
+      $('.fixt-done').click(function() {
+        cuntpoints = $(e.currentTarget).siblings('input').val();
+        if($(e.currentTarget).hasClass('home')) {
+            fixture.set({homePoints:2,homeCunts:cuntpoints});
+        } else {
+            fixture.set({awayPoints:2,awayCunts:cuntpoints});
+        }
+        self.removeMeta();
+        $(e.currentTarget).after(cuntpoints);
+      })
+    },
 
+    addMeta: function(currentTarget) {
+      currentTarget.parent().append('<input type="text" class="cunts"><button class="fixt-done">Done</button>');
+    },
+
+    removeMeta: function() {
+      _.each($('.fixture'), function() {
+        $('.cunts').remove();
+        $('.fixt-done').remove();
+      })
     },
 
     generateFixtures: function(e) {
