@@ -1,6 +1,6 @@
 define([
   'models/fixture_model'
-], 
+],
 function(fixture_model) {
 
   var Fixtures = Parse.Collection.extend({

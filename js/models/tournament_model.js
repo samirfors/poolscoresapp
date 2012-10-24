@@ -3,6 +3,7 @@ define([
   'models/fixture_model'
 ],
 function(fixtures_collection,fixture_model) {
+  var console = window.console;
 
   var Tournament = Parse.Object.extend({
     className:"Tournament",
@@ -19,15 +20,23 @@ function(fixtures_collection,fixture_model) {
       // TODO: break out in separate module/helper to easily switch
       this.templateProcessor = {
         process:function(players,rounds){
+
+          function add(a,b) {
+            var f = new fixture_model();
+            f.set("home",a);
+            f.set("away",b);
+            baseRound.push(f);
+          }
+
           var baseRound = [];
           var fixtures = [];
-          if(players.length == 2)
+          if(players.length === 2)
           {
             add(players[0],players[1]);
           }
 
-          var p1,p2,p3,p4;
-          if(players.length == 3)
+          var p1,p2,p3,p4,p5;
+          if(players.length === 3)
           {
             p1 = players[1];
             p2 = players[2];
@@ -39,7 +48,7 @@ function(fixtures_collection,fixture_model) {
           }
 
 
-          if(players.length == 4)
+          if(players.length === 4)
           {
             p1 = players[3];
             p2 = players[1];
@@ -56,7 +65,7 @@ function(fixtures_collection,fixture_model) {
           }
 
 
-          if(players.length == 5)
+          if(players.length === 5)
           {
             p1 = players[2];
             p2 = players[1];
@@ -77,37 +86,28 @@ function(fixtures_collection,fixture_model) {
           }
 
 
-            for(var i in baseRound)
-            {
-               fixtures.push(baseRound[i])
+            for(var i in baseRound) {
+               fixtures.push(baseRound[i]);
             }
 
             // REPEAT FOR REMAINING ROUNDS
-            for(var i = 1; i < rounds; i++)
-            {
-              for(var fixt in baseRound)
-              {
-                var newFixt = baseRound[fixt].clone()
-                if(i%2 != 0) newFixt.rotate();
-
-                fixtures.push(newFixt)
+            for(i = 1; i < rounds; i++) {
+              for(var fixt in baseRound) {
+                var newFixt = baseRound[fixt].clone();
+                if(i%2 !== 0) {
+                  newFixt.rotate();
+                }
+                fixtures.push(newFixt);
               }
             }
-
-          function add(a,b){
-            var f = new fixture_model();
-            f.set("home",a);
-            f.set("away",b);
-            baseRound.push(f)
-          }
           return fixtures;
         }
-      }
+      };
     },
     addPlayer: function(player) {
       var players = this.get('players');
       players.push(player);
-      console.log("ADD:" + player)
+      console.log("ADD:" + player);
     },
 
     removePlayer: function(player) {
@@ -123,11 +123,11 @@ function(fixtures_collection,fixture_model) {
     generateMatchSchedule: function() {
       var rounds = 2;
       var players = this.get('players');
-      console.log(players)
-      if(players.length < 2) return false;
-      else if(players.length == 2) rounds = 6;
-      else if(players.length == 3) rounds = 3;
-      else rounds = 2;
+      console.log(players);
+      if(players.length < 2) { return false; }
+      else if(players.length === 2) { rounds = 6; }
+      else if(players.length === 3) { rounds = 3; }
+      else { rounds = 2; }
 
       // this.set("fixtures", this.scheduleProcessor.process(this.get('players'),rounds));
 

@@ -1,8 +1,12 @@
-define([ 
+define([
   'bootstrapper',
-], function(Bootstrapper){
+  'backbone',
+  'jquery'
+], function(Bootstrapper,Backbone,$){
+
   var initialize = function(){
-    Bootstrapper.initialize();
+    Backbone.setDomLibrary($);
+    return Bootstrapper.initialize();
   }
 
   return {

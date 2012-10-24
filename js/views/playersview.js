@@ -1,6 +1,12 @@
-define([],
-function(){
-  var playerview = Backbone.View.extend({
+define([
+  'backbone',
+  'underscore',
+  'jquery'
+],
+function(Backbone, _, $){
+  var console = window.console,
+
+  playerview = Backbone.View.extend({
     el: $('#players-list'),
 
     events: {

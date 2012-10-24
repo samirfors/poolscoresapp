@@ -1,4 +1,4 @@
-define([], 
+define([],
 function() {
 
   var Player = Parse.Object.extend({

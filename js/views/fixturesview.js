@@ -1,9 +1,13 @@
 define([
+  'backbone',
+  'underscore',
+  'jquery'
 ],
-function(){
+function(Backbone, _, $){
   'use strict';
-  var console = window.console;
-  var fixturesview = Backbone.View.extend({
+  var console = window.console,
+
+  fixturesview = Backbone.View.extend({
     el: $('#fixtures'),
 
     events: {
@@ -57,11 +61,11 @@ function(){
       }
     },
 
-    save:function(e){
-      console.log("SAVE!!!")
+    save:function(){
+      console.log("SAVE!!!");
       this.tournament.save(null,{
         success:function(){
-          alert("Saved to Parse!")
+          console.log("Saved to Parse!");
         }
       });
     }

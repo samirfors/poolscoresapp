@@ -1,13 +1,15 @@
 define([
+  'backbone',
+  'underscore',
   'views/playersview',
   'views/fixturesview',
   'collections/players_collection',
-  'models/tournament_model',
-  'models/player_model',
+  'models/tournament_model'
 
-], function(playersview, fixturesview, players_collection, tournament_model,player_model){
+], function(Backbone, _, playersview, fixturesview, players_collection, tournament_model){
+  var console = window.console,
 
-  var Bootstrapper = Backbone.View.extend({
+  Bootstrapper = Backbone.View.extend({
 
     initialize: function() {
       _.bindAll(this);
@@ -36,6 +38,7 @@ define([
 
   var initialize = function(){
     var bootstrapper = new Bootstrapper();
+    return bootstrapper;
   };
   return {
     initialize: initialize
