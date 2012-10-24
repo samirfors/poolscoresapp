@@ -1,12 +1,11 @@
 define([
-  'collections/fixtures_collection',
   'models/fixture_model'
 ],
-function(fixtures_collection,fixture_model) {
-  var console = window.console;
+function(fixture_model) {
+  var console = window.console,
 
-  var Tournament = Parse.Object.extend({
-    className:"Tournament",
+  Tournament = Parse.Object.extend({
+    className: "Tournament",
     defaults: {
       id: null,
       date: null,
@@ -28,14 +27,16 @@ function(fixtures_collection,fixture_model) {
             baseRound.push(f);
           }
 
-          var baseRound = [];
-          var fixtures = [];
+          var baseRound = [],
+              fixtures = [],
+              p1,p2,p3,p4,p5,i,
+              fixt, newFixt;
+
           if(players.length === 2)
           {
             add(players[0],players[1]);
           }
 
-          var p1,p2,p3,p4,p5;
           if(players.length === 3)
           {
             p1 = players[1];
@@ -86,14 +87,14 @@ function(fixtures_collection,fixture_model) {
           }
 
 
-            for(var i in baseRound) {
+            for(i in baseRound) {
                fixtures.push(baseRound[i]);
             }
 
             // REPEAT FOR REMAINING ROUNDS
             for(i = 1; i < rounds; i++) {
-              for(var fixt in baseRound) {
-                var newFixt = baseRound[fixt].clone();
+              for(fixt in baseRound) {
+                newFixt = baseRound[fixt].clone();
                 if(i%2 !== 0) {
                   newFixt.rotate();
                 }
@@ -107,13 +108,13 @@ function(fixtures_collection,fixture_model) {
     addPlayer: function(player) {
       var players = this.get('players');
       players.push(player);
-      console.log("ADD:" + player);
     },
 
     removePlayer: function(player) {
-      var players = this.get('players');
+      var p,
+          players = this.get('players');
 
-      for(var p in players) {
+      for(p in players) {
         if (player.id === players[p].id) {
           players.splice(p, 1);
         }
@@ -121,15 +122,13 @@ function(fixtures_collection,fixture_model) {
     },
 
     generateMatchSchedule: function() {
-      var rounds = 2;
-      var players = this.get('players');
-      console.log(players);
+      var rounds = 2,
+          players = this.get('players');
+
       if(players.length < 2) { return false; }
       else if(players.length === 2) { rounds = 6; }
       else if(players.length === 3) { rounds = 3; }
       else { rounds = 2; }
-
-      // this.set("fixtures", this.scheduleProcessor.process(this.get('players'),rounds));
 
       this.set("fixtures", this.templateProcessor.process(players,rounds));
       // return false if it failed
