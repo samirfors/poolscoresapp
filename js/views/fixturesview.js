@@ -28,13 +28,11 @@ function(Backbone, _, $){
     },
 
     showFixtures: function() {
-      var fixtures = this.tournament.get('fixtures');
-      for(var i in fixtures)
-       { //alert(fixture.get('home'))
-           var fixture;
-
+      var fixtures = this.tournament.get('fixtures'),
+          fixture, i, fixt;
+      for(i in fixtures) {
         fixture = fixtures[i];
-        var fixt = $('<li class="fixture"><span class="home">' + fixture.get('home').get('name') + '</span> - <span class="away">' + fixture.get('away').get('name') + '</span></li>');
+        fixt = $('<li class="fixture"><span class="home">' + fixture.get('home').get('name') + '</span> - <span class="away">' + fixture.get('away').get('name') + '</span></li>');
         fixt.data('fixture',fixture);
         $('#fixtures-list').append(fixt);
       }
