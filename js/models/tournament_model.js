@@ -6,6 +6,7 @@ function(fixture_model) {
 
   Tournament = Parse.Object.extend({
     className: "Tournament",
+
     defaults: {
       id: null,
       date: null,
@@ -13,12 +14,11 @@ function(fixture_model) {
       players: []
     },
 
-
     initialize: function() {
 
       // TODO: break out in separate module/helper to easily switch
       this.templateProcessor = {
-        process:function(players,rounds){
+        process: function(players,rounds){
 
           function add(a,b) {
             var f = new fixture_model();
@@ -105,6 +105,7 @@ function(fixture_model) {
         }
       };
     },
+
     addPlayer: function(player) {
       var players = this.get('players');
       players.push(player);
@@ -134,7 +135,6 @@ function(fixture_model) {
       // return false if it failed
 
       return true;
-
     }
 
   });
