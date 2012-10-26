@@ -43,6 +43,7 @@ function(Backbone, _, $, playerTpl){
       if (this.tournament.generateMatchSchedule()) {
         this.eventHub.trigger('scheduleDone');
       }
+      this.$el.remove();
     },
 
     addPlayerTournament: function(e) {
