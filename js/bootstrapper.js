@@ -4,10 +4,11 @@ define([
   'views/playersview',
   'views/fixturesview',
   'views/standingsview',
+  'views/saveview',
   'collections/players_collection',
   'models/tournament_model'
 
-], function(Backbone, _, playersview, fixturesview, standingsview, players_collection, tournament_model){
+], function(Backbone, _, playersview, fixturesview, standingsview, saveview, players_collection, tournament_model){
   var console = window.console,
 
   Bootstrapper = Backbone.View.extend({
@@ -35,6 +36,11 @@ define([
       });
 
       standingsview = new standingsview({
+        eventHub  : this.eventHub,
+        tournament: this.tournament
+      });
+
+      saveview = new saveview({
         eventHub  : this.eventHub,
         tournament: this.tournament
       });
