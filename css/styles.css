@@ -45,7 +45,7 @@ button.send-results { width: 75%; float: right; }
 li.fixture .cunts { height: 32px; margin: 0 2%; width: 10%; }
 
 /* Main styles */
-body { background: #f1f1f1; }
+body { background: #e0e0e0; }
 
 ul { list-style-type: none; margin-left: 0; }
 
@@ -67,7 +67,7 @@ li.player, li.fixture { margin: 5px 0; }
 li.fixture .separator { width: 5%; display: inline-block; text-align: center; }
 
 table { width: 100%; font-size: 20px; color: #999999; -webkit-text-shadow: 0 1px 0 white; -moz-text-shadow: 0 1px 0 white; -o-text-shadow: 0 1px 0 white; text-shadow: 0 1px 0 white; }
-table tr { border-bottom: 2px solid #cccccc; line-height: 36px; -webkit-box-shadow: 0 1px 0 white; -moz-box-shadow: 0 1px 0 white; -o-box-shadow: 0 1px 0 white; box-shadow: 0 1px 0 white; }
+table tr { border-bottom: 3px solid #cccccc; line-height: 36px; -webkit-box-shadow: 0 1px 0 white; -moz-box-shadow: 0 1px 0 white; -o-box-shadow: 0 1px 0 white; box-shadow: 0 1px 0 white; }
 
 .row { margin-top: 10px; margin-bottom: 10px; }
 
