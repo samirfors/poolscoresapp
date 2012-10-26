@@ -33,15 +33,38 @@ footer
   +linear-gradient($hf-bg, $hf-gradient, 1, 1)
   border-top: 1px solid $border-color
 
-.player
+.player, .home, .away
   @extend %selectable, %btn, %grey
   margin: 5px 0
 
-  &.selected
+  &.selected, &.winner
     @extend %green
 
-.fixture
-  @extend %selectable
+.home, .away
+  display: inline-block
+  width: 20%
 
-  .winner
-    background: $mild-green
+li
+  &.fixture
+    @extend %selectable
+
+    .cunts
+      height: 32px
+      margin: 0 10px
+      width: 10%
+
+table
+  width: 100%
+  font-size: 20px
+  color: #999
+
+  tr
+    border-bottom: 2px solid #ccc
+    line-height: 36px
+
+.row
+  margin-top: 10px
+  margin-bottom: 10px
+
+
+
