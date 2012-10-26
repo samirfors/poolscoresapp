@@ -6,7 +6,7 @@
   <title>PoolScores</title>
   <meta name="description" content="">
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, user-scalable=no;" />
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
@@ -16,7 +16,7 @@
 
   <header>
     <div class="container">
-      <h1>Serious poolscores</h1>
+      <h1>Poolscores</h1>
     </div>
   </header>
 
@@ -25,35 +25,26 @@
 
     <div class="row">
 
-      <div id="players" class="span12">
+      <div id="players" class="span3">
         <h3>Players available</h3>
         <ul id="players-list"></ul>
         <button class="generate-fixtures">Generate some fixtures</button>
       </div><!-- end #players -->
-
-    </div><!-- end .row -->
-
-    <div class="row">
 
       <div id="fixtures" class="span6">
           <h3>Fixtures</h3>
           <ul id="fixtures-list"></ul>
       </div><!-- end #fixtures -->
 
-
-      <div id="standings" class="span6">
+      <div id="standings" class="span3">
         <h3>Standings</h3>
         <table id="standings-table">
         </table>
       </div><!-- end #standings -->
 
-    </div><!-- end .row -->
-
-    <div class="row">
-
-      <div id="save">
-        <button class="send-results span11">Send results</button>
-        <a href="" class="span1">Cancel</a>
+      <div id="save" class="span12">
+        <button class="cancel">Cancel</button>
+        <button class="send-results">Save results</button>
       </div>
 
     </div><!-- end .row -->
@@ -62,7 +53,6 @@
 
   <footer>
     <div class="container">
-      Footer
     </div>
   </footer>
 
