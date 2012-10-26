@@ -1,9 +1,11 @@
 define([
   'backbone',
   'underscore',
-  'jquery'
+  'jquery',
+  'text!../../templates/fixture.html',
+  'text!../../templates/fixture-meta.html'
 ],
-function(Backbone, _, $){
+function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
   'use strict';
   var console = window.console,
 
@@ -11,11 +13,8 @@ function(Backbone, _, $){
     el: $('#fixtures'),
 
     events: {
-      'click .generate-fixture' : 'generateFixtures',
       'click .home'             : 'setWinner',
-      'click .away'             : 'setWinner',
-      'click .send-results'     : 'save'
-
+      'click .away'             : 'setWinner'
     },
 
     initialize: function(options) {
@@ -30,7 +29,7 @@ function(Backbone, _, $){
     showFixtures: function() {
       var fixtures = this.tournament.get('fixtures'),
           fixture, i, fixt,
-          html = _.template($('#fixture-template').html());
+          html = _.template(fixtureTpl);
       for(i in fixtures) {
         fixture = fixtures[i];
         fixt = $(html({
@@ -53,7 +52,7 @@ function(Backbone, _, $){
       this.addMeta($(e.currentTarget));
 
       $('.fixt-done').click(function() {
-        cuntpoints = $(e.currentTarget).siblings('input').val();
+        cuntpoints = Number($(e.currentTarget).siblings('input').val());
         if($(e.currentTarget).hasClass('home')) {
             fixture.set({homePoints:2,homeCunts:cuntpoints});
         } else {
@@ -61,11 +60,12 @@ function(Backbone, _, $){
         }
         self.removeMeta();
         $(e.currentTarget).after(cuntpoints);
+        self.eventHub.trigger('updateTable');
       });
     },
 
     addMeta: function(currentTarget) {
-      var html = _.template($('#fixture-meta-template').html());
+      var html = _.template(fixtureMetaTpl);
       currentTarget.parent().append(html);
     },
 
@@ -73,22 +73,6 @@ function(Backbone, _, $){
       _.each($('.fixture'), function() {
         $('.cunts').remove();
         $('.fixt-done').remove();
-      });
-    },
-
-    generateFixtures: function(e) {
-      e.preventDefault();
-      if (this.tournament.generateMatchSchedule()) {
-        this.eventHub.trigger('scheduleDone');
-      }
-    },
-
-    save:function(){
-      console.log("SAVE!!!");
-      this.tournament.save(null,{
-        success:function(){
-          console.log("Saved to Parse!");
-        }
       });
     }
 

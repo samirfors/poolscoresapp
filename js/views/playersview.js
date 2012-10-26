@@ -1,17 +1,19 @@
 define([
   'backbone',
   'underscore',
-  'jquery'
+  'jquery',
+  'text!../../templates/player.html'
 ],
-function(Backbone, _, $){
+function(Backbone, _, $, playerTpl){
   var console = window.console,
 
   playerview = Backbone.View.extend({
-    el: $('#players-list'),
+    el: $('#players'),
 
     events: {
       'click .available'          : 'addPlayerTournament',
-      'click .selected'           : 'removePlayerTournament'
+      'click .selected'           : 'removePlayerTournament',
+      'click .generate-fixtures'  : 'generateFixtures'
     },
 
     initialize: function(options) {
@@ -24,15 +26,23 @@ function(Backbone, _, $){
 
     add: function() {
       var self = this,
-          html = _.template($('#player-template').html());
-      self.$el.html("");
+          player,
+          html = _.template(playerTpl);
+      self.$el.children('ul').html("");
       this.collection.each(function(object) {
-        $(html({player_id: object.id, player_name: object.attributes.name})).appendTo(self.$el);
-    });
+        player = $(html({
+          player_id: object.id,
+          player_name: object.attributes.name
+        }));
+        self.$el.children('ul').append(player);
+      });
     },
 
-    generateFixtures: function() {
-      console.log('generating fixtures');
+    generateFixtures: function(e) {
+      e.preventDefault();
+      if (this.tournament.generateMatchSchedule()) {
+        this.eventHub.trigger('scheduleDone');
+      }
     },
 
     addPlayerTournament: function(e) {
