@@ -11,22 +11,6 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
   <link rel="stylesheet" href="css/styles.css">
-
-  <script type="text/template" id="player-template">
-    <li class="player available" id=<%= player_id %>><%= player_name %></li>
-  </script>
-
-  <script type="text/template" id="fixture-template">
-    <li class="fixture"><span class="home"><%= player_home %></span> - <span class="away"><%= player_away %></span></li>
-  </script>
-
-  <script type="text/template" id="fixture-meta-template">
-    <input type="text" class="cunts"><button class="fixt-done">Done</button>
-  </script>
-
-  <script type="text/template" id="standings-template">
-    <p><%= name %></p>
-  </script>
 </head>
 <body>
 
@@ -44,28 +28,31 @@
       <div id="players" class="span12">
         <h3>Players available</h3>
         <ul id="players-list"></ul>
+        <button class="generate-fixtures">Generate some fixtures</button>
       </div><!-- end #players -->
 
     </div><!-- end .row -->
 
     <div class="row">
 
-      <div id="fixtures">
-        <div class="span12">
-          <button class="generate-fixture">Generate some fixtures</button>
-        </div>
-        <div class="span12">
+      <div id="fixtures" class="span6">
           <h3>Fixtures</h3>
           <ul id="fixtures-list"></ul>
-          <button class="send-results">Send results</button>
-
-        </div>
       </div><!-- end #fixtures -->
 
 
-      <div id="standings" class="span12">
+      <div id="standings" class="span6">
         <h3>Standings</h3>
       </div><!-- end #standings -->
+
+    </div><!-- end .row -->
+
+    <div class="row">
+
+      <div id="save">
+        <button class="send-results span11">Send results</button>
+        <a href="" class="span1">Cancel</a>
+      </div>
 
     </div><!-- end .row -->
 
