@@ -11,6 +11,22 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
   <link rel="stylesheet" href="css/styles.css">
+
+  <script type="text/template" id="player-template">
+    <li class="player available" id=<%= player_id %>><%= player_name %></li>
+  </script>
+
+  <script type="text/template" id="fixture-template">
+    <li class="fixture"><span class="home"><%= player_home %></span> - <span class="away"><%= player_away %></span></li>
+  </script>
+
+  <script type="text/template" id="fixture-meta-template">
+    <input type="text" class="cunts"><button class="fixt-done">Done</button>
+  </script>
+
+  <script type="text/template" id="standings-template">
+    <p><%= name %></p>
+  </script>
 </head>
 <body>
 

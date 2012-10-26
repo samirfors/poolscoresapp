@@ -29,10 +29,14 @@ function(Backbone, _, $){
 
     showFixtures: function() {
       var fixtures = this.tournament.get('fixtures'),
-          fixture, i, fixt;
+          fixture, i, fixt,
+          html = _.template($('#fixture-template').html());
       for(i in fixtures) {
         fixture = fixtures[i];
-        fixt = $('<li class="fixture"><span class="home">' + fixture.get('home').get('name') + '</span> - <span class="away">' + fixture.get('away').get('name') + '</span></li>');
+        fixt = $(html({
+          player_home: fixture.get('home').get('name'),
+          player_away: fixture.get('away').get('name')
+        }));
         fixt.data('fixture',fixture);
         $('#fixtures-list').append(fixt);
       }
@@ -57,18 +61,19 @@ function(Backbone, _, $){
         }
         self.removeMeta();
         $(e.currentTarget).after(cuntpoints);
-      })
+      });
     },
 
     addMeta: function(currentTarget) {
-      currentTarget.parent().append('<input type="text" class="cunts"><button class="fixt-done">Done</button>');
+      var html = _.template($('#fixture-meta-template').html());
+      currentTarget.parent().append(html);
     },
 
     removeMeta: function() {
       _.each($('.fixture'), function() {
         $('.cunts').remove();
         $('.fixt-done').remove();
-      })
+      });
     },
 
     generateFixtures: function(e) {

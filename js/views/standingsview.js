@@ -22,11 +22,12 @@ define([
 
     listPlayers: function() {
       var players = this.tournament.get('players'),
-          p, player;
+          p, player,
+          html = _.template($('#standings-template').html());
 
       for(p in players) {
         player = players[p];
-        this.$el.append(player.get('name'));
+        $(html({name: player.get('name')})).appendTo(this.$el);
       }
     },
 

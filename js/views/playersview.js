@@ -23,10 +23,11 @@ function(Backbone, _, $){
     },
 
     add: function() {
-      var self = this;
+      var self = this,
+          html = _.template($('#player-template').html());
       self.$el.html("");
       this.collection.each(function(object) {
-        self.$el.append('<li class="player available" id="'+object.id+'">'+object.attributes['name']+'</li>');
+        $(html({player_id: object.id, player_name: object.attributes.name})).appendTo(self.$el);
     });
     },
 
