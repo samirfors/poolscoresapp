@@ -28,6 +28,18 @@ define([
         player = players[p];
         this.$el.append(player.get('name'));
       }
+    },
+
+    writeTable: function() {
+
+    },
+
+    setWinner: function() {
+
+    },
+
+    updateStandings: function() {
+
     }
 
   });
