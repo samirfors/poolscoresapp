@@ -29,7 +29,7 @@ define([
 
       for(p in players) {
         player = players[p];
-        $(html({name: player.get('name')})).appendTo(this.$el);
+        $(html({name: player.get('name')})).appendTo(this.$el.children('table'));
       }
     },
 
