@@ -33,19 +33,18 @@ define([
       }
     },
 
-    setWinner: function() {
-
-    },
-
     updateTable: function() {
-      console.log('updateTable');
       var p, standings = this.tournament.getStandings(),
           html = _.template(standingsTpl);
 
-      console.log(standings)
-       $(this.$el.children('table')).html("")
+      $(this.$el.children('table')).html("");
+
       for(p in standings){
-           $(html({name: standings[p].name,points:standings[p].points,cuntPoints:standings[p].cuntPoints})).appendTo(this.$el.children('table'));
+        $(html({
+          name: standings[p].name,
+          points: standings[p].points,
+          cuntPoints: standings[p].cuntPoints
+        })).appendTo(this.$el.children('table'));
       }
     }
 
