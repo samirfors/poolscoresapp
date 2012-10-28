@@ -59,7 +59,7 @@ function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
             fixture.set({awayPoints:2,awayCunts:cuntpoints});
         }
         self.removeMeta();
-        $(e.currentTarget).after(cuntpoints);
+        //$(e.currentTarget).after(cuntpoints);
         self.eventHub.trigger('updateTable');
       });
 
