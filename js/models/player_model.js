@@ -2,7 +2,7 @@ define([],
 function() {
 
   var Player = Parse.Object.extend({
-  	className: "Player",
+    className: "Player",
     defaults: {
       id: null,
       name: null,

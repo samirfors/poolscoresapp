@@ -7,7 +7,7 @@ define([
   var initialize = function(){
     Backbone.setDomLibrary($);
     return Bootstrapper.initialize();
-  }
+  };
 
   return {
     initialize: initialize
