@@ -2,8 +2,8 @@ define([
   'backbone',
   'underscore',
   'jquery',
-  'text!../../templates/fixture.html',
-  'text!../../templates/fixture-meta.html'
+  'text!templates/fixture.html',
+  'text!templates/fixture-meta.html'
 ],
 function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
   'use strict';

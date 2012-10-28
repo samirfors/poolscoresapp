@@ -2,7 +2,7 @@ define([
   'backbone',
   'underscore',
   'jquery',
-  'text!../../templates/player.html'
+  'text!templates/player.html'
 ],
 function(Backbone, _, $, playerTpl){
   var console = window.console,

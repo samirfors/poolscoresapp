@@ -2,7 +2,7 @@ define([
   'backbone',
   'underscore',
   'jquery',
-  'text!../../templates/standings.html'
+  'text!templates/standings.html'
 ], function(Backbone, _, $, standingsTpl) {
   'use strict';
   var console = window.console,
