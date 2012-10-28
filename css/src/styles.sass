@@ -40,8 +40,12 @@ footer
 .player, .home, .away
   @extend %selectable, %btn, %grey
 
+  &:hover
+    +box-shadow(0 1px 0 #eee inset)
+
   &.selected, &.winner
     @extend %green
+    +box-shadow(0 1px 0 #eee inset)
 
 .home, .away
   display: inline-block
