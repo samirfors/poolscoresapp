@@ -29,7 +29,7 @@ define([
 
       for(p in players) {
         player = players[p];
-        $(html({name: player.get('name')})).appendTo(this.$el.children('table'));
+        $(html({name: player.get('name'),points:0,cuntPoints:0})).appendTo(this.$el.children('table'));
       }
     },
 
@@ -39,6 +39,14 @@ define([
 
     updateTable: function() {
       console.log('updateTable');
+      var p, standings = this.tournament.getStandings(),
+          html = _.template(standingsTpl);
+
+      console.log(standings)
+       $(this.$el.children('table')).html("")
+      for(p in standings){
+           $(html({name: standings[p].name,points:standings[p].points,cuntPoints:standings[p].cuntPoints})).appendTo(this.$el.children('table'));
+      }
     }
 
   });

@@ -62,6 +62,8 @@ function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
         $(e.currentTarget).after(cuntpoints);
         self.eventHub.trigger('updateTable');
       });
+
+
     },
 
     addMeta: function(currentTarget) {
