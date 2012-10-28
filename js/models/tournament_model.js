@@ -135,6 +135,58 @@ function(fixture_model) {
       // return false if it failed
 
       return true;
+    },
+    getStandings: function() {
+
+
+      var standings = [];
+          players = this.get('players'),
+          fixtures = this.get('fixtures')
+      for(var i = 0; i < players.length; i++)
+      {
+       
+        standings.push( calculateScoreForPlayer(players[i],fixtures))
+       
+      }
+
+
+      function calculateScoreForPlayer(player,fixtures)
+      {
+        var standing = {name:player.get("name"),points:0,cuntPoints:0,id:player.get("id")}
+
+        for(var i = 0; i < fixtures.length; i++)
+        {
+          if(fixtures[i].get("home").get("name") == standing.name )
+          {
+            standing.points += fixtures[i].get("homePoints");
+            standing.cuntPoints += fixtures[i].get("homeCunts");
+
+          } else if(fixtures[i].get("away").get("name") == standing.name)
+          {
+             standing.points += fixtures[i].get("awayPoints");
+            standing.cuntPoints += fixtures[i].get("awayCunts");
+          }
+        }  
+
+
+        
+        return standing;
+      }
+
+  
+      function sortOnScore(a,b)
+      {
+        if(a.points > b.points) return -1;
+
+        if(a.points == b.points){
+          if(a.cuntPoints > b.cuntPoints) return -1;
+        }
+        return 1;
+      }
+
+      standings.sort(sortOnScore)
+      
+      return standings;
     }
 
   });
