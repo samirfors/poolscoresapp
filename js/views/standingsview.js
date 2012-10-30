@@ -10,6 +10,10 @@ define([
   standingsview = Backbone.View.extend({
     el: $('#standings'),
 
+    elems: {
+      table : $('#standings-table')
+    },
+
     events: {},
 
     initialize: function(options) {
@@ -29,7 +33,11 @@ define([
 
       for(p in players) {
         player = players[p];
-        $(html({name: player.get('name'),points:0,cuntPoints:0})).appendTo(this.$el.children('table'));
+        $(html({
+          name: player.get('name'),
+          points: 0,
+          cuntPoints: 0
+        })).appendTo(this.elems.table);
       }
     },
 
@@ -37,14 +45,14 @@ define([
       var p, standings = this.tournament.getStandings(),
           html = _.template(standingsTpl);
 
-      $(this.$el.children('table')).html("");
+      this.elems.table.html("");
 
       for(p in standings){
         $(html({
           name: standings[p].name,
           points: standings[p].points,
           cuntPoints: standings[p].cuntPoints
-        })).appendTo(this.$el.children('table'));
+        })).appendTo(this.elems.table);
       }
     }
 

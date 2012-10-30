@@ -10,6 +10,10 @@ function(Backbone, _, $, playerTpl){
   playerview = Backbone.View.extend({
     el: $('#players'),
 
+    elems: {
+      ul  : $('#players-list')
+    },
+
     events: {
       'click .available'          : 'addPlayerTournament',
       'click .selected'           : 'removePlayerTournament',
@@ -28,13 +32,14 @@ function(Backbone, _, $, playerTpl){
       var self = this,
           player,
           html = _.template(playerTpl);
-      self.$el.children('ul').html("");
+
+      this.elems.ul.html("");
       this.collection.each(function(object) {
         player = $(html({
           player_id: object.id,
           player_name: object.attributes.name
         }));
-        self.$el.children('ul').append(player);
+        self.elems.ul.append(player);
       });
     },
 

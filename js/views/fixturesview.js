@@ -12,6 +12,10 @@ function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
   fixturesview = Backbone.View.extend({
     el: $('#fixtures'),
 
+    elems: {
+      ul      : $('#fixtures-list')
+    },
+
     events: {
       'click .home'             : 'setWinner',
       'click .away'             : 'setWinner'
@@ -37,7 +41,7 @@ function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
           player_away: fixture.get('away').get('name')
         }));
         fixt.data('fixture',fixture);
-        $('#fixtures-list').append(fixt);
+        this.elems.ul.append(fixt);
       }
     },
 
