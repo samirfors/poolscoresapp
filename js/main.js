@@ -1,18 +1,17 @@
 require.config({
   paths: {
-    'underscore': 'libs/underscore/underscore-min',
-    'backbone'  : 'libs/backbone/backbone-min',
-    'localstorage': 'libs/backbonelocalstorage/backbone.localStorage-min',
-    'jquery'    : 'libs/jquery/jquery-min',
-    'templates' : '../templates'
+    'jquery'      : 'libs/jquery/jquery-min',
+    'underscore'  : 'libs/underscore/underscore-min',
+    'backbone'    : 'libs/backbone/backbone-min',
+    'templates'   : '../templates'
   },
   shim: {
+    'underscore': {
+      exports: '_'
+    },
     'backbone': {
       deps: ['underscore', 'jquery'],
       exports: "Backbone"
-    },
-    'underscore': {
-      exports: '_'
     }
   }
 });

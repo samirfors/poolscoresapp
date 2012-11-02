@@ -1,9 +1,8 @@
 define([
   'backbone',
-  'localstorage',
   'models/player_model'
 ],
-function(Backbone,LocalStorage,player_model) {
+function(Backbone,player_model) {
 
   var console = window.console,
       alert   = window.alert,
@@ -19,7 +18,7 @@ function(Backbone,LocalStorage,player_model) {
         // Get from cache
 
 
-        
+
 
 
 
