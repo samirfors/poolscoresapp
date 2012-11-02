@@ -67,7 +67,7 @@ function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
         self.eventHub.trigger('updateTable');
       });
 
-
+      Backbone.sync();
     },
 
     addMeta: function(currentTarget) {

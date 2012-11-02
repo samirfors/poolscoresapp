@@ -1,16 +1,32 @@
 define([
+  'backbone',
+  'localstorage',
   'models/player_model'
 ],
-function(player_model) {
+function(Backbone,LocalStorage,player_model) {
 
   var console = window.console,
       alert   = window.alert,
 
   Players = Parse.Collection.extend({
     model: player_model,
-
+    localStorage: new Backbone.LocalStorage("playersCollection"),
     initialize: function() {
-      this.fetch({add:true});
+      if(navigator.onLine) {
+        this.fetch({add:true});
+      } else {
+
+        // Get from cache
+
+
+        
+
+
+
+
+
+      }
+
     },
 
     getAllPlayers: function() {
