@@ -34,6 +34,8 @@ function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
       var fixtures = this.tournament.get('fixtures'),
           fixture, i, fixt,
           html = _.template(fixtureTpl);
+
+          console.log(fixtures[0])
       for(i in fixtures) {
         fixture = fixtures[i];
         fixt = $(html({
@@ -67,7 +69,7 @@ function(Backbone, _, $, fixtureTpl, fixtureMetaTpl){
         self.eventHub.trigger('updateTable');
       });
 
-      Backbone.sync();
+     // Backbone.sync();
     },
 
     addMeta: function(currentTarget) {

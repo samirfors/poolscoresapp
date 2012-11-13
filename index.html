@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en" >
-<!--<html lang="en" manifest="cache.manifest">-->
+<!--<html lang="en" >-->
+<html lang="en" manifest="cache.manifest">
 
 <head>
   <meta charset="utf-8">
@@ -63,11 +63,14 @@
     </div>
   </footer>
 
-  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.1.6.min.js"></script>
+  <script type="text/javascript" src="js/libs/parse/parse-1.1.8.min.js"></script>
   <script data-main="js/main" src="js/libs/require/require.js"></script>
   <script type="text/javascript">
-    Parse.initialize("f8hFekRLpjqKoyrhYVPUK4Xisb6BGEpV3kDY2w1a", "bXu5LL2sj7L4HYQ66Pl4HnJBXM7crfH2L2wd9XK4");
 
+  if(navigator.onLine)
+  {
+    Parse.initialize("f8hFekRLpjqKoyrhYVPUK4Xisb6BGEpV3kDY2w1a", "bXu5LL2sj7L4HYQ66Pl4HnJBXM7crfH2L2wd9XK4");
+  }
  //   alert("ONLINE:" + navigator.onLine)
 
   </script>
