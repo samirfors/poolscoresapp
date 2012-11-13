@@ -1,11 +1,6 @@
 CACHE MANIFEST
 index.html
 css/styles.css
-css/libs/bootstrap.css
-css/libs/bootstrap-responsive.css
-http://fonts.googleapis.com/css?family=Coming+Soon
-http://fonts.googleapis.com/css?family=Delius+Unicase
-http://fonts.googleapis.com/css?family=Droid+Sans:400,700
 img/favicon.ico
 img/iphone-icon.png
 js/app.js

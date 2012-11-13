@@ -18,9 +18,7 @@ define([
       this.eventHub = {};
       _.extend(this.eventHub, Backbone.Events);
 
-      this.players = new players_collection({
-        eventHub: this.eventHub
-      });
+      this.players = new players_collection();
       this.tournament = new tournament_model();
 
      // this.players.getAllPlayers();
@@ -46,10 +44,7 @@ define([
         eventHub  : this.eventHub,
         tournament: this.tournament
       });
-
     }
-
-
 
   });
 

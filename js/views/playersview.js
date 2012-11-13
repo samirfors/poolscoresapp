@@ -2,10 +2,9 @@ define([
   'backbone',
   'underscore',
   'jquery',
-   'models/player_model',
   'text!templates/player.html'
 ],
-function(Backbone, _, $,player_model, playerTpl){
+function(Backbone, _, $, playerTpl){
   var console = window.console,
 
   playerview = Backbone.View.extend({
@@ -26,43 +25,21 @@ function(Backbone, _, $,player_model, playerTpl){
       this.eventHub = options.eventHub;
       this.tournament = options.tournament;
      // this.collection.each(this.add);
-
       this.collection.bind('add', this.add);
-      this.eventHub.on('addPlayers', this.add);
-
-
-        if(!navigator.onLine && localStorage.players)
-        {
-        //  console.log("win" + localStorage.players)
-          var loadedPlayers = JSON.parse(localStorage.players)
-
-          for(var i = 0; i < loadedPlayers.length; i++)
-          {
-           // console.log(loadedPlayers[i])
-            var newPlayer = new player_model({ name: loadedPlayers[i].name, id:loadedPlayers[i].id});
-           // newPlayer.id = loadedPlayers[i].id;
-
-            this.collection.add(newPlayer)
-            console.log(loadedPlayers[i].name);
-            }
-          }
-    
     },
 
-    add: function(){ 
-
+    add: function() {
       var self = this,
           player,
           html = _.template(playerTpl);
+
       this.elems.ul.html("");
       this.collection.each(function(object) {
-        if(object && object.attributes && object.attributes.name)
-        {
         player = $(html({
           player_id: object.id,
           player_name: object.attributes.name
         }));
-        self.elems.ul.append(player);}
+        self.elems.ul.append(player);
       });
     },
 
@@ -75,7 +52,6 @@ function(Backbone, _, $,player_model, playerTpl){
     },
 
     addPlayerTournament: function(e) {
-      console.log(e.currentTarget)
       var player = this.collection.get(e.currentTarget.id);
       $(e.currentTarget).addClass('selected').removeClass('available');
       this.tournament.addPlayer(player);

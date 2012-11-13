@@ -1,44 +1,31 @@
 define([
   'backbone',
+  'localstorage',
   'models/player_model'
 ],
-function(Backbone,player_model) {
+function(Backbone,LocalStorage,player_model) {
 
   var console = window.console,
       alert   = window.alert,
 
   Players = Parse.Collection.extend({
     model: player_model,
-    initialize: function(options) {
-      var self = this;
-      self.eventHub = options.eventHub;
-
+    localStorage: new Backbone.LocalStorage("playersCollection"),
+    initialize: function() {
       if(navigator.onLine) {
-        this.fetch({add:true,success:function(){
-        var p = new Array();
-       
-      //  p.push({id:1222112,name:"test"})
-
-
-         for(object in self.models)
-        {
-
-            p.push({id:self.models[object].id,name:self.models[object].get("name")}); 
-
-        }
-        localStorage.players = JSON.stringify(p);
-
-        }});
+        this.fetch({add:true});
       } else {
-        
-        alert("Offline mode")
-      }
 
-    },
-    
-    save:function(){
-      //localStorage.players = [];
-      //localStorage.players.push({id:1222112,name:"test"})
+        // Get from cache
+
+
+        
+
+
+
+
+
+      }
 
     },
 
@@ -56,8 +43,8 @@ function(Backbone,player_model) {
             self.last(id);
           }
 
+
         },
-      
         error: function(error) {
           alert("Error: " + error.code + " " + error.message);
         }
