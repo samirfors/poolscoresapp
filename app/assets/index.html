@@ -1,0 +1,61 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Example brunch application</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="stylesheets/app.css">
+  <script src="javascripts/vendor.js"></script>
+  <script src="javascripts/app.js"></script>
+  <script>require('initialize');</script>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Poolscores</h1>
+    </div>
+  </header>
+
+
+  <div role="main" class="container">
+
+    <div class="row">
+
+      <div id="players" class="span3">
+        <h3>Players available</h3>
+        <ul id="players-list"></ul>
+        <button class="generate-fixtures">Generate some fixtures</button>
+      </div><!-- end #players -->
+
+      <div id="fixtures" class="span6">
+          <h3>Fixtures</h3>
+          <ul id="fixtures-list"></ul>
+      </div><!-- end #fixtures -->
+
+      <div id="standings" class="span3">
+        <h3>Standings</h3>
+        <table id="standings-table">
+        </table>
+      </div><!-- end #standings -->
+
+      <div id="save" class="span12">
+        <button class="cancel">Cancel</button>
+        <button class="send-results">Save results</button>
+      </div>
+
+    </div><!-- end .row -->
+
+  </div><!-- end main.container -->
+
+  <footer>
+    <div class="container">
+    </div>
+  </footer>
+
+</body>
+</html>
