@@ -1,12 +1,12 @@
 {
-  "author": "Your Name",
-  "name": "package-name",
-  "description": "Package description",
-  "version": "0.0.1",
-  "homepage": "",
+  "author": "Samir Fors",
+  "name": "poolscores",
+  "description": "App to keep track of poolscores",
+  "version": "0.1.0",
+  "homepage": "http://manversuspillow.se/labs/poolscores/",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/samirfors/poolscoresapp"
   },
   "engines": {
     "node": "~0.6.10"

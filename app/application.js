@@ -11,10 +11,6 @@ Application = {
 
     Parse.initialize("f8hFekRLpjqKoyrhYVPUK4Xisb6BGEpV3kDY2w1a", "bXu5LL2sj7L4HYQ66Pl4HnJBXM7crfH2L2wd9XK4");
 
-    // Ideally, initialized classes should be kept in controllers & mediator.
-    // If you're making big webapp, here's more sophisticated skeleton
-    // https://github.com/paulmillr/brunch-with-chaplin
-
     this.players = new PlayersCollection();
     this.tournament = new TournamentModel();
     this.playersView = new PlayersView({

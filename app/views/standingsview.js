@@ -10,7 +10,7 @@ module.exports = View.extend({
   },
 
   subscriptions: {
-    'scheduleDone': 'writeTable',
+    'scheduleDone': 'initTable',
     'updateTable' : 'updateTable'
   },
 
@@ -21,7 +21,7 @@ module.exports = View.extend({
     this.tournament = options.tournament;
   },
 
-  writeTable: function() {
+  initTable: function() {
     var players = this.tournament.getPlayers();
     this.drawTable(players);
   },
