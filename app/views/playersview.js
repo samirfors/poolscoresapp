@@ -29,6 +29,7 @@ module.exports = View.extend({
     }
     if(!navigator.onLine && localStorage.players) {
     //  console.log("win" + localStorage.players)
+      console.log(localStorage.player);
       var loadedPlayers = JSON.parse(localStorage.players)
 
       for(var i = 0; i < loadedPlayers.length; i++) {
