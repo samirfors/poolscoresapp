@@ -29,6 +29,7 @@ module.exports = View.extend({
   showFixtures: function() {
     var fixtures = this.tournament.get('fixtures'),
         fixture, i, fixt;
+
     for(i in fixtures) {
       fixture = fixtures[i];
       fixt = $(this.template({
@@ -37,6 +38,15 @@ module.exports = View.extend({
             }));
       fixt.data('fixture',fixture);
       this.elems.ul.append(fixt);
+
+      if(fixture.get("homePoints") > 0) {
+        $(fixt).children(".home").addClass("winner");
+      }
+
+      if(fixture.get("awayPoints") > 0) {
+        $(fixt).children(".away").addClass("winner");
+      }
+
     }
   },
 
@@ -58,11 +68,9 @@ module.exports = View.extend({
           fixture.set({awayPoints:2,awayCunts:cuntpoints});
       }
       self.removeMeta();
-      //$(e.currentTarget).after(cuntpoints);
       Backbone.Mediator.pub('updateTable');
+      self.tournament.saveToLocal();
     });
-
-    //Backbone.sync();
   },
 
   addMeta: function(currentTarget) {

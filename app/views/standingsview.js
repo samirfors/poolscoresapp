@@ -41,4 +41,5 @@ module.exports = View.extend({
       }));
     }, this);
   }
+
 });

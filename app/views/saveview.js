@@ -23,6 +23,8 @@ module.exports = View.extend({
   },
 
   cancel: function() {
+    localStorage.tournament = "null";
     location.reload();
   }
+
 });

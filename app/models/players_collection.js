@@ -4,22 +4,34 @@ var Collection = require('./collection'),
 
 module.exports = Collection.extend({
   model: player_model,
-//  localStorage: new Backbone.LocalStorage("playersCollection"),
+
   initialize: function() {
+    var self = this;
+
     if(navigator.onLine) {
-      this.fetch({add:true});
+      this.fetch({add:true,success:function(){
+      var p = new Array();
+
+
+       for(object in self.models)
+      {
+
+          p.push({id:self.models[object].id,name:self.models[object].get("name")});
+
+      }
+      localStorage.players = JSON.stringify(p);
+
+      }});
     } else {
 
-     // Get from cache
+      alert("Offline mode");
+    }
 
+  },
 
-
-
-
-
-
-
-   }
+  save:function(){
+    //localStorage.players = [];
+    //localStorage.players.push({id:1222112,name:"test"})
 
   },
 
@@ -37,8 +49,8 @@ module.exports = Collection.extend({
           self.last(id);
         }
 
-
       },
+
       error: function(error) {
         alert("Error: " + error.code + " " + error.message);
       }

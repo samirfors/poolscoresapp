@@ -133,6 +133,49 @@ module.exports = Parse.Object.extend({
     return true;
   },
 
+  loadFromLocal:function() {
+    var localFixtures = JSON.parse(localStorage.tournament),
+        fixtures = new Array();
+
+    for(var i = 0; i < localFixtures.length; i++) {
+      var localFix = localFixtures[i],
+          f = new fixture_model();
+
+      f.set("home",getPlayerById(localFix.home.objectId,playerCollection.get("players")));
+      f.set("away",getPlayerById(localFix.away.objectId,this.get("players")));
+      f.set("homePoints",localFix.homePoints);
+      f.set("awayPoints",localFix.awayPoints);
+      f.set("homeCunts",localFix.homeCunts);
+      f.set("awayCunts",localFix.awayCunts);
+
+      fixtures.push(f);
+    }
+
+    function getPlayerById(id,players) {
+      var p;
+      console.log("GETTING PLAYERS" + players.length)
+      for(var i = 0; i<players.length; i++)
+      {
+        if(id == players[i].id)
+          p = players[i];
+      }
+
+      return p;
+    }
+
+
+   this.set("fixtures", fixtures);
+
+  },
+
+  saveToLocal:function(){
+    var fixtures = this.get('fixtures');
+    localStorage.tournament = JSON.stringify(fixtures);
+
+    console.log(localStorage.tournament)
+    //this.loadFromLocal();
+  },
+
   getPlayers: function() {
     var standings = [],
         players = this.get('players');
