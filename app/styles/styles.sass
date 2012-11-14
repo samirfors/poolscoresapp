@@ -1,0 +1,86 @@
+@import 'colors'
+@import 'mixins'
+@import 'components'
+@import 'typography'
+@import 'forms'
+
+/* Main styles */
+body
+  background: $page-bg
+
+ul
+  list-style-type: none
+  margin-left: 0
+
+a
+  color: $orange
+  text-decoration: none
+
+  &:hover,
+  &:active
+    color: $dark-orange
+    text-decoration: underline
+
+header, footer
+  width: 100%
+  color: $white
+
+header
+  +linear-gradient($hf-bg, $hf-gradient, 1, 0)
+  border-bottom: 1px solid $border-color
+
+footer
+  +linear-gradient($hf-bg, $hf-gradient, 1, 1)
+  border-top: 1px solid $border-color
+  height: 20px
+
+#save
+  margin-top: 10px
+
+.player, .home, .away
+  @extend %selectable, %btn, %grey
+
+  &:hover
+    +box-shadow(0 1px 0 #eee inset)
+
+  &.selected, &.winner
+    @extend %green
+    +box-shadow(0 1px 0 #eee inset)
+
+.home, .away
+  display: inline-block
+  width: 20%
+
+li
+  line-height: 24px
+
+  &.player, &.fixture
+    margin: 5px 0
+
+  &.fixture
+    @extend %selectable
+
+    .separator
+      width: 5%
+      display: inline-block
+      text-align: center
+
+table
+  width: 100%
+  font-size: 20px
+  color: #999
+  +text-shadow(0 1px 0 $white)
+
+  tr
+    border-bottom: 3px solid #ccc
+    line-height: 36px
+    +box-shadow(0 1px 0 $white)
+
+.row
+  margin-top: 10px
+  margin-bottom: 10px
+
+@media (max-width: 767px)
+  body
+    padding: 0
+

@@ -1,5 +1,5 @@
-var View = require('./view');
-var template = require('./templates/players');
+var View = require('./view'),
+    template = require('./templates/players');
 
 module.exports = View.extend({
   el: $('#players'),
@@ -19,9 +19,7 @@ module.exports = View.extend({
 
   initialize: function(options) {
     _.bindAll(this);
-    // this.eventHub = options.eventHub;
-    // this.tournament = options.tournament;
-   // this.collection.each(this.add);
+    this.tournament = options.tournament;
     this.collection.bind('add', this.add);
   },
 
@@ -42,7 +40,7 @@ module.exports = View.extend({
   generateFixtures: function(e) {
     e.preventDefault();
     if (this.tournament.generateMatchSchedule()) {
-      this.eventHub.trigger('scheduleDone');
+      Backbone.Mediator.pub('scheduleDone');
     }
     this.$el.remove();
   },

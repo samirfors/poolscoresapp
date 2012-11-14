@@ -1,0 +1,30 @@
+/* Forms */
+button
+  width: 100%
+  @extend %btn, %orange
+
+  &:hover
+    +box-shadow(0 1px 0 #eee inset)
+    @extend %light-orange
+
+  &.fixt-done
+    width: 16%
+    padding: 9px 0
+    margin-top: -2px
+
+  &.cancel
+    width: 23%
+    margin-right: 2%
+    float: left
+    @extend %grey
+
+  &.send-results
+    width: 75%
+    float: right
+
+li
+  &.fixture
+    .cunts
+      height: 32px
+      margin: 0 2%
+      width: 10%

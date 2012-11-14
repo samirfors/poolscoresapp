@@ -1,0 +1,46 @@
+/* Variables */
+$border-radius-medium: 5px
+
+/* Components */
+%seam
+  clear: both
+  display: block
+  height: 0px
+  border-top: 1px solid rgba($black, .12)
+  border-bottom: 1px solid rgba($white, .15)
+
+%bordered
+  border: 1px solid
+
+%bordered-rounded
+  @extend %bordered
+  +border-radius($border-radius-medium)
+
+%orange
+  color: $soft-white
+  border-color: $dark-orange
+  +linear-gradient($orange,$middle-orange,1,0)
+
+%light-orange
+  color: $soft-white
+  border-color: $dark-orange
+  +linear-gradient($light-orange,$orange,1,0)
+
+%grey
+  color: #555
+  border-color: #ccc
+  +linear-gradient(#eee, #ddd, 1, 0)
+
+%green
+  color: $soft-white
+  border-color: $green
+  background: $mild-green
+
+%selectable
+  cursor: pointer
+
+%btn
+  padding: 10px
+  text-align: center
+  +box-shadow(0 1px 0 $white inset, 1px 1px 1px #aaa)
+  @extend %bordered-rounded, %selectable
